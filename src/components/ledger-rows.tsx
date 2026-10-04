@@ -30,6 +30,7 @@ export function BankBadge({ bank, size = 40 }: { bank: Bank; size?: number }) {
           height: size,
           borderRadius: size / 4,
           backgroundColor: bank.color,
+          marginBottom: 8,
         },
       ]}
     >
@@ -41,7 +42,6 @@ export function BankBadge({ bank, size = 40 }: { bank: Bank; size?: number }) {
 }
 
 export function AccountRow({ account }: { account: Account }) {
-  const { data } = useLedger();
   return (
     <Link
       href={{ pathname: "/account/[id]", params: { id: account.id } }}
@@ -56,9 +56,6 @@ export function AccountRow({ account }: { account: Account }) {
             {ACCOUNT_TYPE_LABELS[account.type]}
           </ThemedText>
         </View>
-        <ThemedText style={styles.amount}>
-          {formatMoney(account.balance, data.currency)}
-        </ThemedText>
       </Pressable>
     </Link>
   );
